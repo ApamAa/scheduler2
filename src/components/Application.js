@@ -5,7 +5,6 @@ import "components/Application.scss";
 import axios from "axios";
 import {getAppointmentsForDay, getInterview} from "../helpers/selectors";
 
-
 export default function Application(props) {
   const setDay = day => setState({ ...state, day });
   const [state, setState] = useState({
