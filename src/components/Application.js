@@ -3,26 +3,50 @@ import DayList from "../components/DayList";
 import Appointment from "../components/Appointment";
 import "components/Application.scss";
 import axios from "axios";
-import {getAppointmentsForDay, getInterview} from "../helpers/selectors";
+import {getInterviewersForDay, getAppointmentsForDay, getInterview} from "../helpers/selectors";
 
 export default function Application(props) {
   const setDay = day => setState({ ...state, day });
+  const setInterviwers = interviewersDay => setState({ ...state, interviewersDay});
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {}
   });
-
-
+  function bookInterview(id, interview) {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    return axios.put(`/api/appointments/${id}`, { interview })
+    .then(() => setState({...state, appointments}))
+}
+  
+  // function save(name, interviewer) {
+  //   const interview = {
+  //     student: name,
+  //     interviewer
+  //   };
+  // }
   useEffect(() => {
     const days = axios.get("http://localhost:8001/api/days");
     const appointments = axios.get("http://localhost:8001/api/appointments");
     const interviewers = axios.get("http://localhost:8001/api/interviewers");
     Promise.all([ days, appointments, interviewers]).then(([responseDays, responseAppointments, responseInterviewers]) => {
+      const result = getInterviewersForDay({ 
+        interviewers: responseInterviewers.data, 
+        days: responseDays.data 
+      }, state.day)
       setState(prev => ({
+        ...prev,
         days: responseDays.data,
         appointments: responseAppointments.data,
         interviewers: responseInterviewers.data,
+        interviewersDay: result
       }))
     });
   }, []);
@@ -35,10 +59,16 @@ export default function Application(props) {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        bookInterview={bookInterview}
+        interviewersDay={state.interviewersDay}
       />
     );
   });
-  
+  useEffect(() => {
+    const result = getInterviewersForDay(state, state.day)
+    setInterviwers(result);
+  }, [state.day])
+
   return (
     <main className="layout">
       <section className="sidebar">
