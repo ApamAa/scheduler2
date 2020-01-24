@@ -34,7 +34,7 @@ return(
 
       />
     </form>
-    <InterviewerList interviewers={interviewers} value={interviewer.id} 
+    <InterviewerList interviewers={interviewers} value={interviewer} 
     onChange={setInterviewer} />
   </section>
   <section className="appointment__card-right">
