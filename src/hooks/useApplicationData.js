@@ -33,10 +33,10 @@ function reducer(state, action) {
     case UPDATE_SPOTS:
     const dayId = findDayByAppointment(action.id, state);
     const aptIds = state.days[dayId].appointments;
-      let newSpots = 0;
+      let openSpots = 0;
         for (let i = 0; i < aptIds.length; i++) {
-          if (state.appointments[aptIds[i]].interview === null) {
-            newSpots += 1;
+          if (!state.appointments[aptIds[i]].interview) {
+            openSpots += 1;
           }
         }
       return {...state, 
@@ -46,7 +46,7 @@ function reducer(state, action) {
         } else {
           return {
             ...item,
-            spots: newSpots
+            spots: openSpots
           }
         }
       })}
