@@ -102,9 +102,6 @@ export default function useApplicationData() {
       
     });
   }, []);
-  // most likley unimportant function
-  useEffect(() => {
-    dispatch({type: SET_INTERVIEWERS})
-  }, [state.day]);
+ 
   return {bookInterview, state, setDay, cancelInterview}
 }
