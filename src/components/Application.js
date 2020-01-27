@@ -23,7 +23,7 @@ export default function Application(props) {
       />
 
       );
-    });
+    }); 
   
   return (
     <main className="layout">
