@@ -19,7 +19,7 @@ export const getInterview = ( state, interview ) => {
     const interviewObj = { student, interviewer };
     return interviewObj;
   }
-}
+};
 
 export const getInterviewersForDay = (state, day) => {
   const interviewers = state.days
@@ -31,4 +31,13 @@ export const getInterviewersForDay = (state, day) => {
     interviewer.push(state.interviewers[states]);
   });
   return interviewer;
+};
+export function findDayByAppointment(id, state) {
+  for (let i = 0; i < state.days.length; i++) {
+    for(let a of state.days[i].appointments) {
+      if (id === a) {
+        return i;
+      }
+    }
+  }
 };
