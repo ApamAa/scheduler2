@@ -58,7 +58,7 @@ export default function Appointment(props) {
           message="Are you sure you would like to delete?"
         />
       )}
-      {mode === DELETING && <Status message="DELETING" />}
+      {mode === DELETING && <Status message="Deleting" />}
 
       {mode === EDIT && (
         <Form
