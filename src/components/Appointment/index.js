@@ -8,7 +8,6 @@ import useVisualMode from "hooks/useVisualMode";
 import Form from "components/Appointment/Form";
 import Confirm from "components/Appointment/Confirm";
 import Error from "components/Appointment/Error";
-// import { getInterviewersForDay } from "../../helpers/selectors";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -32,7 +31,7 @@ export default function Appointment(props) {
     };
     return interview;
   }
-  //console.log("index", props.student);
+
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />

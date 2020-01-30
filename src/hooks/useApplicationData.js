@@ -1,8 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 
-import {
-  getInterviewersForDay,
-} from "../helpers/selectors";
+import { getInterviewersForDay } from "../helpers/selectors";
 
 import reducer, {
   SET_DAY,

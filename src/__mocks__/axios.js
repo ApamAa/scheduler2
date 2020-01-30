@@ -87,7 +87,7 @@ export default {
       status: 200,
       statusText: "OK",
       data: fixtures.appointments
-    })
+    });
   }),
 
   delete: jest.fn(url => {
@@ -95,8 +95,6 @@ export default {
       status: 200,
       statusText: "OK",
       data: fixtures.appointments
-    })
-
+    });
   })
-
 };

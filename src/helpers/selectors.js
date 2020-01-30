@@ -10,7 +10,7 @@ export const getAppointmentsForDay = (state, day) => {
   return appointment;
 };
 
-export const getInterview = ( state, interview ) => {
+export const getInterview = (state, interview) => {
   if (!interview) {
     return null;
   } else {
@@ -34,10 +34,10 @@ export const getInterviewersForDay = (state, day) => {
 };
 export function findDayByAppointment(id, state) {
   for (let i = 0; i < state.days.length; i++) {
-    for(let a of state.days[i].appointments) {
+    for (let a of state.days[i].appointments) {
       if (id === a) {
         return i;
       }
     }
   }
-};
+}

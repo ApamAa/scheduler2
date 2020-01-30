@@ -1,12 +1,8 @@
-import {
-  // getInterviewersForDay,
-  findDayByAppointment
-} from "../helpers/selectors";
+import { findDayByAppointment } from "../helpers/selectors";
 
 export const SET_DAY = "SET_DAY";
 export const SET_APPLICATION_DATA = "SET_APPLICATION_DATA";
 export const SET_INTERVIEW = "SET_INTERVIEW";
-// export const SET_INTERVIEWERS = "SET_INTERVIEWERS";
 export const UPDATE_SPOTS = "UPDATE_SPOTS";
 
 export default function reducer(state, action) {
@@ -33,9 +29,7 @@ export default function reducer(state, action) {
         [action.id]: updated
       };
       return { ...state, appointments: updateAppointments };
-    // case SET_INTERVIEWERS:
-    //   const result = getInterviewersForDay(state, state.day);
-    //   return { ...state, interviewersDay: result };
+
     case UPDATE_SPOTS:
       const dayId = findDayByAppointment(action.id, state);
       const aptIds = state.days[dayId].appointments;
