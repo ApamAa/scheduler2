@@ -80,10 +80,14 @@ export default function Appointment(props) {
           interviewers={props.interviewersDay}
           onSave={(name, interviewer) => {
             transition(SAVING);
-            props
-              .bookInterview(props.id, save(name, interviewer))
-              .then(() => transition(SHOW))
-              .catch(error => transition(ERROR_SAVE, true));
+            if (interviewer) {
+              props
+                .bookInterview(props.id, save(name, interviewer))
+                .then(() => transition(SHOW))
+                .catch(error => transition(ERROR_SAVE, true));
+            } else {
+              transition(ERROR_SAVE);
+            }
           }}
           onCancel={() => back()}
         />
